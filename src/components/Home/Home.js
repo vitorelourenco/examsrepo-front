@@ -14,5 +14,4 @@ export default function Home(){
 
 const StyleFrame = styled.div`
   width: 300px;
-  background-color: red;
 `;

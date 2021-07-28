@@ -55,15 +55,20 @@ export default function UploadBox() {
         <p className="upload--text">Drop a file or click me</p>
         {file ? <p className="upload--fileName">Current File: {file?.name}</p> : null}
       </FileDrop>
-      <Button disabled={isSubmitDisabled} type="submit" id="send-drag-and-drop">
-        Upload
-      </Button>
+      <div className="upload--submit">
+        <Button disabled={isSubmitDisabled} type="submit" id="send-drag-and-drop">
+          Upload
+        </Button>
+      </div>
     </Form>
   );
 }
 
 const Form = styled.form`
   border: 1px solid white;
+  background-color: #eee;
+  border-radius: 5px;
+  color: #333;
 
   .file-drop{
     height: 200px;
@@ -72,6 +77,12 @@ const Form = styled.form`
 
   .file-drop-target {
     height: 100%;
+  }
+
+  .upload--submit {
+    background-color: #333;
+    padding: 1px;
+    border-radius: 5px;
   }
 
   .file-drop-target{
@@ -101,6 +112,9 @@ const Button = styled.button`
     filter: brightness(0.3);
     cursor: auto;
   }
+
+  background-color: greenyellow;
+  border: 2px groove white;
   cursor: pointer;
   margin: 10px auto;
   display: block;
