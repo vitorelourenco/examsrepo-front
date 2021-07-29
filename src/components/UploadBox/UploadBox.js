@@ -2,6 +2,10 @@ import { useRef, useState } from "react";
 
 import { FileDrop } from "react-file-drop";
 import styled from "styled-components";
+import {MdInsertDriveFile} from 'react-icons/md'
+import {FaHandRock} from 'react-icons/fa'
+import {GiClick} from 'react-icons/gi'
+import {GrSend} from 'react-icons/gr'
 
 import useDragAndDrop from "../../hooks/useDragAndDrop";
 import { uploadToAWS } from "../../utils/aws";
@@ -45,26 +49,26 @@ export default function UploadBox() {
   useDragAndDrop();
 
   return (
-    <Form ref={refDropArea} onSubmit={onFormSubmit} >
+    <UploadWrapper ref={refDropArea} onSubmit={onFormSubmit} >
       <Input ref={refFileInput} onChange={onFileInputChange} type="file" />
       <FileDrop
         frame={refDropArea?.current || window.document}
         onDrop={onFileDrop}
         onTargetClick={onTargetClick}
       >
-        <p className="upload--text">Drop a file or click me</p>
-        {file ? <p className="upload--fileName">Current File: {file?.name}</p> : null}
+        <p className="upload--text"><FaHandRock/><MdInsertDriveFile/><br/><GiClick/></p>
+        {file ? <p className="upload--fileName"><MdInsertDriveFile/> {file?.name}</p> : null}
       </FileDrop>
       <div className="upload--submit">
         <Button disabled={isSubmitDisabled} type="submit" id="send-drag-and-drop">
-          Upload
+          <GrSend/>
         </Button>
       </div>
-    </Form>
+    </UploadWrapper>
   );
 }
 
-const Form = styled.form`
+const UploadWrapper = styled.div`
   border: 1px solid white;
   background-color: #eee;
   border-radius: 5px;
@@ -94,6 +98,8 @@ const Form = styled.form`
 
     .upload--text{
       font-size: 28px;
+      text-align: center;
+      line-height: 40px;
     }
 
     .upload--fileName{
@@ -115,7 +121,9 @@ const Button = styled.button`
 
   background-color: greenyellow;
   border: 2px groove white;
+  padding: 5px 15px 0 15px;
   cursor: pointer;
   margin: 10px auto;
   display: block;
+  border-radius: 4px;
 `;

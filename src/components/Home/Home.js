@@ -1,16 +1,16 @@
+import { Link } from 'react-router-dom';
+
 import styled from 'styled-components';
 import {MdAssignment, MdSearch} from 'react-icons/md';
-import FileDropBox from '../UploadBox/UploadBox';
 
 export default function Home(){
   return(
     <HomeWrapper>
-      <div>
+      <Link to="/create">
         <MdAssignment/>
-      </div>
-      <div>
-        <MdSearch/>
-      </div>
+      </Link>
+      <Link to="/">
+      </Link>
     </HomeWrapper>
   )
 }
@@ -18,7 +18,7 @@ export default function Home(){
 const HomeWrapper = styled.div`
   display: flex;
   font-size: 200px;
-  & > div {
+  & > a {
     width: 50%;
     display: flex;
     justify-content: center;

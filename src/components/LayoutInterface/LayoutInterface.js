@@ -29,4 +29,8 @@ const Quiet = styled(ssshhhhh)`
   text-align: center;
   font-size: 10px;
   user-select: none;
+  position: fixed;
+  bottom: 50px;
+  left: 0;
+  width: 100%;
 `;
