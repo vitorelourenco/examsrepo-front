@@ -50,8 +50,7 @@ table {
 	border-spacing: 0;
 }
 body{
-  font-family: 'Raleway', sans-serif;
-  background-color: #8C11BE;
+  background-color: darkred;
   color: white;
 }
 a{

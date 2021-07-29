@@ -1,7 +1,7 @@
 import { Switch, BrowserRouter, Route } from "react-router-dom";
 
 import GlobalStyles from "./styles/GlobalStyles";
-
+import LayoutInterface from "./components/LayoutInterface/LayoutInterface";
 import Home from './components/Home/Home';
 
 export default function App() {
@@ -9,11 +9,13 @@ export default function App() {
       <BrowserRouter>
         <GlobalStyles />
         <Switch>
-          <Route
-            exact
-            path="/"
-            component={Home}
-          />
+          <LayoutInterface>
+            <Route
+              exact
+              path="/"
+              component={Home}
+            />
+          </LayoutInterface>
         </Switch>
       </BrowserRouter>
   );
