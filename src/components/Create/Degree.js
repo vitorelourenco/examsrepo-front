@@ -9,6 +9,7 @@ export default function Degree({
   setDegrees,
   degreesURL,
 }) {
+  
   const onDegreeChange = (e) => {
     const newExamOptions = { ...examOptions };
     newExamOptions.degreeId = e.target.value;

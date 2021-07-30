@@ -12,7 +12,7 @@ export default function SelectItem({
   return (
     <RowWrapper>
       <label htmlFor={htmlId}>{htmlLabel}</label>
-      <select onChange={onChange} value={value} id={htmlId} name={htmlId}>
+      <select required onChange={onChange} value={value} id={htmlId} name={htmlId}>
         <Options arr={optionsArr} />
       </select>
       {fnAdd ? <CgAddR style={{ cursor: "pointer" }} onClick={fnAdd} /> : null}
