@@ -46,7 +46,7 @@ export default function Create() {
         setExamOptions(newExamOptions);
       })
       .catch((err) => alert(err));
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   //recalculate the courses and instructors options when the degree changes
   useEffect(() => {
@@ -72,7 +72,7 @@ export default function Create() {
       newExamOptions.instructorId = `${instructors[0]?.id || ""}`;
       setExamOptions(newExamOptions);
     });
-  }, [examOptions.degreeId, BASE_URL]);
+  }, [examOptions.degreeId, BASE_URL]); // eslint-disable-line react-hooks/exhaustive-deps
 
   //recalculate the instructor options when course changes 
   useEffect(() => {
@@ -84,7 +84,7 @@ export default function Create() {
     const newExamOptions = { ...examOptions };
     newExamOptions.instructorId = `${course?.instructors[0]?.id || ""}`;
     setExamOptions(newExamOptions);
-  }, [examOptions.courseId, drive.courses]);
+  }, [examOptions.courseId, drive.courses]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const onFormSubmit = (e) => {
     e.preventDefault();

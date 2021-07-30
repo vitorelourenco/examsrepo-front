@@ -1,4 +1,3 @@
-import { HiBookOpen } from "react-icons/hi";
 import styled from "styled-components";
 
 export default function Name({
