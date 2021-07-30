@@ -3,10 +3,12 @@ import { uploadToAWS } from "../../utils/aws";
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import Configuration from "./Configuration";
-import ExamBox from "./ExamBox";
+import ExamBox from "../ExamBox/ExamBox";
 
 export default function Create() {
   const [file, setFile] = useState(null);
+  const [link, setLink] = useState(null);
+  const [submitType, setSubmitType] = useState("upload");
 
   const [drive, setDrive] = useState({});
 
@@ -14,6 +16,7 @@ export default function Create() {
   const [courses, setCourses] = useState([]);
   const [instructors, setInstructors] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
 
   const [examOptions, setExamOptions] = useState({
     degreeId: "",
@@ -86,6 +89,23 @@ export default function Create() {
     setExamOptions(newExamOptions);
   }, [examOptions.courseId, drive.courses]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  //check if the form is ready to submit
+  useEffect(()=>{
+    const shouldStayDisabled = (()=>{
+      if(!file && submitType === "upload") return true;
+      if(!link && submitType === "link") return true;
+      if(!examOptions.courseId) return true;
+      if(!examOptions.name) return true;
+      if(!examOptions.instructorId) return true;
+      if(!examOptions.degreeId) return true;
+      if(!examOptions.categoryId) return true;
+      return false;
+    })();
+    if (shouldStayDisabled !== isSubmitDisabled){
+      setIsSubmitDisabled(!isSubmitDisabled);
+    };
+  },[file,link,examOptions.courseId,examOptions.name,examOptions.instructorId,examOptions.degreeId,examOptions.categoryId]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const onFormSubmit = (e) => {
     e.preventDefault();
 
@@ -96,7 +116,6 @@ export default function Create() {
       })
       .catch((err) => alert(err));
   };
-
 
   return (
     <Form onSubmit={onFormSubmit}>
@@ -112,7 +131,7 @@ export default function Create() {
           categories,
         }}
       />
-      <ExamBox {...{ file, setFile }} />
+      <ExamBox {...{ file, setFile , submitType, setSubmitType, isSubmitDisabled, setLink, link}} />
     </Form>
   );
 }
