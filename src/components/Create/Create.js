@@ -3,10 +3,12 @@ import { uploadToAWS } from "../../utils/aws";
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import Configuration from "./Configuration";
-import ExamBox from "./ExamBox";
+import ExamBox from "../ExamBox/ExamBox";
 
 export default function Create() {
   const [file, setFile] = useState(null);
+  const [link, setLink] = useState(null);
+  const [submitType, setSubmitType] = useState("upload");
 
   const [drive, setDrive] = useState({});
 
@@ -14,6 +16,7 @@ export default function Create() {
   const [courses, setCourses] = useState([]);
   const [instructors, setInstructors] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
 
   const [examOptions, setExamOptions] = useState({
     degreeId: "",
@@ -29,6 +32,7 @@ export default function Create() {
     () => new URL("categories", BASE_URL),
     [BASE_URL]
   );
+  const examsURL = useMemo(() => new URL("exams", BASE_URL), [BASE_URL]);
 
   //Get and set the list of degrees and exam categories
   useEffect(() => {
@@ -74,7 +78,7 @@ export default function Create() {
     });
   }, [examOptions.degreeId, BASE_URL]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  //recalculate the instructor options when course changes 
+  //recalculate the instructor options when course changes
   useEffect(() => {
     if (!examOptions.courseId) return;
     const course = drive.courses.find(
@@ -86,17 +90,50 @@ export default function Create() {
     setExamOptions(newExamOptions);
   }, [examOptions.courseId, drive.courses]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  //check if the form is ready to submit
+  useEffect(() => {
+    const shouldStayDisabled = (() => {
+      if (!file && submitType === "upload") return true;
+      if (!link && submitType === "link") return true;
+      if (!examOptions.courseId) return true;
+      if (!examOptions.name) return true;
+      if (!examOptions.instructorId) return true;
+      if (!examOptions.degreeId) return true;
+      if (!examOptions.categoryId) return true;
+      return false;
+    })();
+    if (shouldStayDisabled !== isSubmitDisabled) {
+      setIsSubmitDisabled(!isSubmitDisabled);
+    }
+  },[submitType,file,link,examOptions.courseId,examOptions.name,examOptions.instructorId,examOptions.degreeId,examOptions.categoryId]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const onFormSubmit = (e) => {
     e.preventDefault();
 
-    uploadToAWS(file)
-      .then(({ data }) => {
-        alert(data.url);
-        setFile(null);
-      })
-      .catch((err) => alert(err));
-  };
+    const courseId = parseInt(examOptions.courseId);
+    const instructorId = parseInt(examOptions.instructorId);
+    const degreeId = parseInt(examOptions.degreeId);
+    const categoryId = parseInt(examOptions.categoryId);
+    const name = examOptions.name;
 
+    const body = { courseId, instructorId, degreeId, categoryId, name, fileLink: link };
+
+    if (submitType === "upload") {
+      uploadToAWS(file)
+        .then(({ data }) => {
+          body.fileLink = data.url;
+          return axios.post(examsURL, body)
+        })
+        .then(()=>alert("sucesso"))
+        .catch((err) => alert(err));
+    } else {
+      axios
+        .post(examsURL, body)
+        .then(() => alert("sucesso"))
+        .catch((err) => alert(err));
+    }
+    
+  };
 
   return (
     <Form onSubmit={onFormSubmit}>
@@ -112,7 +149,17 @@ export default function Create() {
           categories,
         }}
       />
-      <ExamBox {...{ file, setFile }} />
+      <ExamBox
+        {...{
+          file,
+          setFile,
+          submitType,
+          setSubmitType,
+          isSubmitDisabled,
+          setLink,
+          link,
+        }}
+      />
     </Form>
   );
 }

@@ -5,12 +5,12 @@ import styled from "styled-components";
 import {MdInsertDriveFile} from 'react-icons/md'
 import {FaHandRock} from 'react-icons/fa'
 import {GiClick} from 'react-icons/gi'
-import {GrSend} from 'react-icons/gr'
+import SubmitButton from "./SubmitButton";
 
 import useDragAndDrop from "../../hooks/useDragAndDrop";
 import isThisAFile from "../../utils/isThisAFile";
 
-export default function UploadBox({file, setFile}) {
+export default function UploadBox({file, setFile,isSubmitDisabled}) {
 
   const refDropArea = useRef(null);
   const refFileInput = useRef(null);
@@ -31,10 +31,6 @@ export default function UploadBox({file, setFile}) {
     }
   };
 
-
-
-  const isSubmitDisabled = !file;
-
   useDragAndDrop();
 
   return (
@@ -48,11 +44,7 @@ export default function UploadBox({file, setFile}) {
         <p className="upload--text"><FaHandRock/><MdInsertDriveFile/><br/><GiClick/></p>
         {file ? <p className="upload--fileName"><MdInsertDriveFile/> {file?.name}</p> : null}
       </FileDrop>
-      <div className="upload--submit">
-        <Button disabled={isSubmitDisabled} type="submit" id="send-drag-and-drop">
-          <GrSend/>
-        </Button>
-      </div>
+      <SubmitButton isSubmitDisabled={isSubmitDisabled}/>
     </UploadWrapper>
   );
 }
@@ -60,8 +52,11 @@ export default function UploadBox({file, setFile}) {
 const UploadWrapper = styled.div`
   border: 1px solid white;
   background-color: #eee;
-  border-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   color: #333;
+  height: 253px;
+  position: relative;
 
   .file-drop{
     height: 200px;
@@ -70,12 +65,6 @@ const UploadWrapper = styled.div`
 
   .file-drop-target {
     height: 100%;
-  }
-
-  .upload--submit {
-    background-color: #333;
-    padding: 1px;
-    border-radius: 5px;
   }
 
   .file-drop-target{
@@ -102,17 +91,4 @@ const Input = styled.input`
   display: none;
 `;
 
-const Button = styled.button`
-  :disabled {
-    filter: brightness(0.3);
-    cursor: auto;
-  }
 
-  background-color: greenyellow;
-  border: 2px groove white;
-  padding: 5px 15px 0 15px;
-  cursor: pointer;
-  margin: 10px auto;
-  display: block;
-  border-radius: 4px;
-`;
