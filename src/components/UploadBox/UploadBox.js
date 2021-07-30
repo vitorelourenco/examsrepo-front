@@ -8,11 +8,9 @@ import {GiClick} from 'react-icons/gi'
 import {GrSend} from 'react-icons/gr'
 
 import useDragAndDrop from "../../hooks/useDragAndDrop";
-import { uploadToAWS } from "../../utils/aws";
 import isThisAFile from "../../utils/isThisAFile";
 
-export default function UploadBox() {
-  const [file, setFile] = useState(null);
+export default function UploadBox({file, setFile}) {
 
   const refDropArea = useRef(null);
   const refFileInput = useRef(null);
@@ -33,23 +31,14 @@ export default function UploadBox() {
     }
   };
 
-  const onFormSubmit = (e) => {
-    e.preventDefault();
-    
-    uploadToAWS(file)
-      .then(({ data }) => {
-        alert(data.url);
-        setFile(null);
-      })
-      .catch((err) => alert(err));
-  };
+
 
   const isSubmitDisabled = !file;
 
   useDragAndDrop();
 
   return (
-    <UploadWrapper ref={refDropArea} onSubmit={onFormSubmit} >
+    <UploadWrapper ref={refDropArea} >
       <Input ref={refFileInput} onChange={onFileInputChange} type="file" />
       <FileDrop
         frame={refDropArea?.current || window.document}
