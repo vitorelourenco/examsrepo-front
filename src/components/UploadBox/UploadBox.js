@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 import { FileDrop } from "react-file-drop";
 import styled from "styled-components";

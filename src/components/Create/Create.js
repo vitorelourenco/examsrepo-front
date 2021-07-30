@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import UploadBox from "../UploadBox/UploadBox";
 import { uploadToAWS } from "../../utils/aws";
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
@@ -18,7 +17,7 @@ export default function Create() {
   const [degrees, setDegrees] = useState([]);
 
   const [examOptions, setExamOptions] = useState(
-    new ExamOptions({ degreeId: null })
+    new ExamOptions({ degreeId: "" })
   );
 
   const BASE_URL = process.env.REACT_APP_BASE_URL;

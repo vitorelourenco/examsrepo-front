@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
-import {MdAssignment, MdSearch} from 'react-icons/md';
 import {RiGalleryUploadFill} from 'react-icons/ri';
 
 export default function Home(){
