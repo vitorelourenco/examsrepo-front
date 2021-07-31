@@ -12,7 +12,7 @@ const examsURL = new URL("exams", BASE_URL);
 
 export default function Create() {
   const [file, setFile] = useState(null);
-  const [link, setLink] = useState(null);
+  const [link, setLink] = useState("");
   const [submitType, setSubmitType] = useState("upload");
 
   const [drive, setDrive] = useState({});

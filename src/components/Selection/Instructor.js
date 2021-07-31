@@ -1,5 +1,5 @@
 import { FaChalkboardTeacher } from "react-icons/fa";
-import SelectItem from "../Selection/SelectItem";
+import SelectItem from "./SelectItem";
 
 export default function Instructor({
   examOptions,

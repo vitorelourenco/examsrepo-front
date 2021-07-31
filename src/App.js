@@ -6,6 +6,7 @@ import Home from './components/Home/Home';
 import Create from './components/Create/Create';
 import Find from "./components/Find/Find";
 import Instructor from "./components/Instructor/Instructor";
+import Course from "./components/Course/Course";
 
 export default function App() {
   return (
@@ -32,6 +33,11 @@ export default function App() {
               exact
               path="/instructor/:instructorId"
               component={Instructor}
+            />
+            <Route
+              exact
+              path="/course/:courseId"
+              component={Course}
             />
           </LayoutInterface>
         </Switch>

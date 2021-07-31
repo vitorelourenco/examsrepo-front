@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import TableStyle from "../Utils/TableStyle";
-import { HiBookOpen } from "react-icons/hi";
+import { FaChalkboardTeacher } from "react-icons/fa";
 import styled from "styled-components";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -10,10 +10,10 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 export default function Instructor() {
   const [categories, setCategories] = useState([]);
 
-  const { instructorId } = useParams();
+  const { courseId } = useParams();
   const examURL = useMemo(
-    () => new URL(`exams/instructor/${instructorId}/byCategory`, BASE_URL),
-    [instructorId]
+    () => new URL(`exams/course/${courseId}/byCategory`, BASE_URL),
+    [courseId]
   );
 
   useEffect(() => {
@@ -24,15 +24,15 @@ export default function Instructor() {
         alert(err);
         setCategories([]);
       });
-  }, [instructorId, examURL]);
+  }, [courseId, examURL]);
 
-  if (!instructorId) return null;
+  if (!courseId) return null;
 
   return (
     <> 
       <Info>
         <h3>Degree: {categories[0]?.exams[0]?.course?.degree?.name}</h3>
-        <h1>Instructor: {categories[0]?.exams[0]?.instructor?.name}</h1>
+        <h1>Course: {categories[0]?.exams[0]?.course?.name}</h1>
       </Info>
       <Categories categories={categories} />
     </>
@@ -64,7 +64,7 @@ function CategoryTable({ category }) {
           <tr>
             <th>A</th>
             <th>
-              <HiBookOpen />
+              <FaChalkboardTeacher />
             </th>
           </tr>
         </thead>
@@ -86,13 +86,13 @@ function Exams({ exams }) {
   return (
     <>
       {exams.map((exam) => (
-        <Row key={exam.id} course={exam.course} exam={exam} />
+        <Row key={exam.id} instructor={exam.instructor} exam={exam} />
       ))}
     </>
   );
 }
 
-function Row({ exam, course }) {
+function Row({ exam, instructor }) {
   function CellLink({ content }) {
     return (
       <a target="_blank" rel="noreferrer" href={`${exam.fileLink}`}>
@@ -103,7 +103,7 @@ function Row({ exam, course }) {
   return (
     <tr>
       <td>{<CellLink content={exam.name} />}</td>
-      <td>{<CellLink content={course.name} />}</td>
+      <td>{<CellLink content={instructor.name} />}</td>
     </tr>
   );
 }

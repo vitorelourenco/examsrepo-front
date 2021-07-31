@@ -1,5 +1,5 @@
 import { AiOutlineNumber } from "react-icons/ai";
-import SelectItem from "../Selection/SelectItem";
+import SelectItem from "./SelectItem";
 
 export default function Category({
   examOptions,
