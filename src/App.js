@@ -5,6 +5,7 @@ import LayoutInterface from "./components/LayoutInterface/LayoutInterface";
 import Home from './components/Home/Home';
 import Create from './components/Create/Create';
 import Find from "./components/Find/Find";
+import Instructor from "./components/Instructor/Instructor";
 
 export default function App() {
   return (
@@ -26,6 +27,11 @@ export default function App() {
               exact
               path="/find/:findBy?"
               component={Find}
+            />
+            <Route
+              exact
+              path="/instructor/:instructorId"
+              component={Instructor}
             />
           </LayoutInterface>
         </Switch>

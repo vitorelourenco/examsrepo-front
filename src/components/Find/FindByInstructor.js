@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import TableStyle from "./TableStyle";
+import TableStyle from "../Utils/TableStyle";
 import {IoDocuments} from 'react-icons/io5'
 import { FaChalkboardTeacher } from "react-icons/fa";
 
@@ -48,7 +48,7 @@ export default function FindByInstructor({degreeId}) {
 function Row({ instructor }) {
   function CellLink({content}){
     return(
-      <Link to={`/find/instructor/${instructor.id}`}>
+      <Link to={`/instructor/${instructor.id}`}>
         {content}
       </Link>
     )
