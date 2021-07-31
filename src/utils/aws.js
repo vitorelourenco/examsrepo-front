@@ -2,17 +2,9 @@ import axios from "axios";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-export async function uploadToAWS(file) {
-  const signatureResponse = await getAWSSignature(file);
-  const {signedRequest, url} = signatureResponse.data;
-
-  return uploadWithSignature(file, signedRequest, url);
-}
-
 export function getAWSSignature(file) {
-  return axios.get(
-    `${BASE_URL}/sign-s3?file-name=${file.name}&file-type=${file.type}`
-  );
+  const url = new URL(`/sign-s3?file-name=${file.name}&file-type=${file.type}`,BASE_URL)
+  return axios.get(url);
 }
 
 export async function uploadWithSignature(file, signedRequest, url) {
