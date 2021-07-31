@@ -4,6 +4,7 @@ import GlobalStyles from "./styles/GlobalStyles";
 import LayoutInterface from "./components/LayoutInterface/LayoutInterface";
 import Home from './components/Home/Home';
 import Create from './components/Create/Create';
+import Find from "./components/Find/Find";
 
 export default function App() {
   return (
@@ -20,6 +21,11 @@ export default function App() {
               exact
               path="/create"
               component={Create}
+            />
+            <Route
+              exact
+              path="/find/:findBy?"
+              component={Find}
             />
           </LayoutInterface>
         </Switch>

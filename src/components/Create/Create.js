@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Configuration from "./Configuration";
 import ExamBox from "../ExamBox/ExamBox";
+import useIntialDegreeOptions from "../../hooks/useInitialDegreeOptions";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const degreesURL = new URL("degrees", BASE_URL);
-const categoriesURL = new URL("categories", BASE_URL);
 const examsURL = new URL("exams", BASE_URL);
 
 export default function Create() {
@@ -172,30 +172,6 @@ function useSubmitEnabler({
     examOptions.degreeId,
     examOptions.categoryId,
   ]);
-}
-
-function useIntialDegreeOptions(
-  examOptions,
-  setDegrees,
-  setCategories,
-  setExamOptions
-) {
-  useEffect(() => {
-    const p1 = axios.get(degreesURL);
-
-    const p2 = axios.get(categoriesURL);
-
-    Promise.all([p1, p2])
-      .then(([degreeResponse, categoryResponse]) => {
-        const newExamOptions = { ...examOptions };
-        newExamOptions.degreeId = `${degreeResponse.data[0].id}`;
-        newExamOptions.categoryId = `${categoryResponse.data[0].id}`;
-        setDegrees(degreeResponse.data);
-        setCategories(categoryResponse.data);
-        setExamOptions(newExamOptions);
-      })
-      .catch((err) => alert(err));
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 }
 
 function useOptionsForDegree({
