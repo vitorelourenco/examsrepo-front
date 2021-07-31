@@ -18,7 +18,6 @@ const Main = styled.main`
   width: 768px;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(255,255,255, 0.5);
-  margin-bottom: 200px;
 `;
 
 function ssshhhhh(props){
@@ -31,8 +30,5 @@ const Quiet = styled(ssshhhhh)`
   text-align: center;
   font-size: 10px;
   user-select: none;
-  position: fixed;
-  bottom: 50px;
-  left: 0;
   width: 100%;
 `;

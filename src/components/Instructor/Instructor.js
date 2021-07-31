@@ -31,7 +31,7 @@ export default function Instructor() {
   return (
     <> 
       <Info>
-        <h3>Degree: {categories[0]?.exams[0]?.course?.name}</h3>
+        <h3>Degree: {categories[0]?.exams[0]?.course?.degree?.name}</h3>
         <h1>Instructor: {categories[0]?.exams[0]?.instructor?.name}</h1>
       </Info>
       <Categories categories={categories} />
