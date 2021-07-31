@@ -18,7 +18,7 @@ export default function Configuration({
   return (
     <Wrapper>
       <Degree
-        {...{ hasAdd:true, examOptions,setExamOptions, degrees, setDegrees, degreesURL }}
+        {...{ examOptions,setExamOptions, degrees, setDegrees, degreesURL }}
       />
       <Course {...{ examOptions, setExamOptions, courses}}/>
       <Instructor {...{ examOptions, setExamOptions, instructors}}/>
