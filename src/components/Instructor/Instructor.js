@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import TableStyle from "../Utils/TableStyle";
 import { HiBookOpen } from "react-icons/hi";
 import styled from "styled-components";
+import { FaChalkboardTeacher } from "react-icons/fa";
+import { GiDiploma } from "react-icons/gi";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -31,8 +33,8 @@ export default function Instructor() {
   return (
     <> 
       <Info>
-        <h3>Degree: {categories[0]?.exams[0]?.course?.degree?.name}</h3>
-        <h1>Instructor: {categories[0]?.exams[0]?.instructor?.name}</h1>
+        <h3><GiDiploma/> {categories[0]?.exams[0]?.course?.degree?.name}</h3>
+        <h1><FaChalkboardTeacher/> {categories[0]?.exams[0]?.instructor?.name}</h1>
       </Info>
       <Categories categories={categories} />
     </>
