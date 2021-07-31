@@ -14,6 +14,7 @@ export default function LayoutInterface(props){
 const Main = styled.main`
   margin: 100px auto;
   background-color: #333;  
+  border: 1px solid #333;
   width: 768px;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(255,255,255, 0.5);

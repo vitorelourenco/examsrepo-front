@@ -1,6 +1,6 @@
 import axios from "axios";
 import { GiDiploma } from "react-icons/gi";
-import SelectItem from "./SelectItem";
+import SelectItem from "../Selection/SelectItem";
 
 export default function Degree({
   examOptions,
@@ -8,6 +8,7 @@ export default function Degree({
   degrees,
   setDegrees,
   degreesURL,
+  hasAdd
 }) {
   
   const onDegreeChange = (e) => {
@@ -42,6 +43,7 @@ export default function Degree({
       htmlId="degrees"
       htmlLabel={<GiDiploma />}
       fnAdd={addDegree}
+      hasAdd={hasAdd}
     />
   );
 }

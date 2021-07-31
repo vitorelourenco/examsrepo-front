@@ -1,10 +1,11 @@
 import { HiBookOpen } from "react-icons/hi";
-import SelectItem from "./SelectItem";
+import SelectItem from "../Selection/SelectItem";
 
 export default function Course({
   examOptions,
   setExamOptions,
   courses,
+  hasAdd,
 }) {
   
   const onCourseChange = (e) => {
@@ -20,6 +21,7 @@ export default function Course({
       value={examOptions.courseId}
       htmlId="courses"
       htmlLabel={<HiBookOpen />}
+      hasAdd={hasAdd}
     />
   );
 }

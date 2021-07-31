@@ -8,6 +8,7 @@ export default function SelectItem({
   value,
   htmlId,
   fnAdd,
+  hasAdd
 }) {
   return (
     <RowWrapper>
@@ -15,7 +16,7 @@ export default function SelectItem({
       <select required onChange={onChange} value={value} id={htmlId} name={htmlId}>
         <Options arr={optionsArr} />
       </select>
-      {fnAdd ? <CgAddR style={{ cursor: "pointer" }} onClick={fnAdd} /> : null}
+      {hasAdd && fnAdd ? <CgAddR style={{ cursor: "pointer" }} onClick={fnAdd} /> : null}
     </RowWrapper>
   );
 }

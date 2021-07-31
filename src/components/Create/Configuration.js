@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Degree from "./Degree";
+import Degree from "../Selection/Degree";
 import Course from "./Course";
 import Instructor from "./Instructor";
 import Category from "./Category";
@@ -18,7 +18,7 @@ export default function Configuration({
   return (
     <Wrapper>
       <Degree
-        {...{ examOptions,setExamOptions, degrees, setDegrees, degreesURL }}
+        {...{ hasAdd:true, examOptions,setExamOptions, degrees, setDegrees, degreesURL }}
       />
       <Course {...{ examOptions, setExamOptions, courses}}/>
       <Instructor {...{ examOptions, setExamOptions, instructors}}/>

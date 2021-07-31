@@ -1,10 +1,11 @@
 import { FaChalkboardTeacher } from "react-icons/fa";
-import SelectItem from "./SelectItem";
+import SelectItem from "../Selection/SelectItem";
 
 export default function Instructor({
   examOptions,
   setExamOptions,
   instructors,
+  hasAdd
 }) {
   
   const onInstructorChange = (e) => {
@@ -20,6 +21,7 @@ export default function Instructor({
       value={examOptions.instructorId}
       htmlId="instructors"
       htmlLabel={<FaChalkboardTeacher />}
+      hasAdd={hasAdd}
     />
   );
 }
