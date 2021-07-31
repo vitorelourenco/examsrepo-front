@@ -31,4 +31,5 @@ const Quiet = styled(ssshhhhh)`
   font-size: 10px;
   user-select: none;
   width: 100%;
+  margin-bottom: 10px;
 `;
