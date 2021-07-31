@@ -20,7 +20,6 @@ export default function FindByInstructor({degreeId}) {
       .catch((err) => {
         alert(err);
         setInstructors([]);
-        console.log("lalala")
       });
   }, [degreeId, instructorsURL]);
 
@@ -42,8 +41,6 @@ export default function FindByInstructor({degreeId}) {
     </TableStyle>
   );
 }
-
-
 
 function Row({ instructor }) {
   function CellLink({content}){

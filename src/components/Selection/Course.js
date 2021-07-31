@@ -1,5 +1,5 @@
 import { HiBookOpen } from "react-icons/hi";
-import SelectItem from "../Selection/SelectItem";
+import SelectItem from "./SelectItem";
 
 export default function Course({
   examOptions,

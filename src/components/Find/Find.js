@@ -38,7 +38,7 @@ export default function Find() {
         findBy === "instructor" ? (
           <FindByInstructor degreeId={examOptions.degreeId}/>
         ) : (
-          <FindByCourse />
+          <FindByCourse degreeId={examOptions.degreeId}/>
         )
       ) : (
         <Choices />

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Degree from "../Selection/Degree";
-import Course from "./Course";
-import Instructor from "./Instructor";
-import Category from "./Category";
+import Course from "../Selection/Course";
+import Instructor from "../Selection/Instructor";
+import Category from "../Selection/Category";
 import Name from "./Name";
 
 export default function Configuration({
