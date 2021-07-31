@@ -14,7 +14,8 @@ import FindByInstructor from "./FindByInstructor";
 export default function Find(){
   const [degrees, setDegrees] = useState([]);
   const [categories, setCategories] = useState([]);
-
+  
+  console.log(categories);
   const [examOptions, setExamOptions] = useState({
     degreeId: "",
     categoryId: "",
