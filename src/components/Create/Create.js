@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { uploadToAWS } from "../../utils/aws";
+import { getAWSSignature, uploadWithSignature } from "../../utils/aws";
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import Configuration from "./Configuration";
@@ -119,13 +119,18 @@ export default function Create() {
     const body = { courseId, instructorId, degreeId, categoryId, name, fileLink: link };
 
     if (submitType === "upload") {
-      uploadToAWS(file)
-        .then(({ data }) => {
-          body.fileLink = data.url;
-          return axios.post(examsURL, body)
-        })
-        .then(()=>alert("sucesso"))
-        .catch((err) => alert(err));
+      getAWSSignature(file)
+      .then(({data})=>{
+        const blob = file.slice(0, file.size, file.type); 
+        const newFile = new File([blob], data.newFileName, {type: file.type});
+        return uploadWithSignature(newFile, data.awsData.signedRequest, data.awsData.url);
+      })
+      .then(({data})=>{
+        body.fileLink = data.url;
+        return axios.post(examsURL, body)
+      })
+      .then(()=>alert("success"))
+      .catch((err)=>alert(err));
     } else {
       axios
         .post(examsURL, body)
