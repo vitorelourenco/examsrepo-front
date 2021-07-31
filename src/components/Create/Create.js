@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Configuration from "./Configuration";
 import ExamBox from "../ExamBox/ExamBox";
-import useIntialDegreeOptions from "../../hooks/useInitialDegreeOptions";
+import useInitialDegreeAndCategoriesOptions from "../../hooks/useInitialDegreeAndCategoriesOptions";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const degreesURL = new URL("degrees", BASE_URL);
@@ -31,7 +31,7 @@ export default function Create() {
     name: "",
   });
 
-  useIntialDegreeOptions(
+  useInitialDegreeAndCategoriesOptions(
     examOptions,
     setDegrees,
     setCategories,

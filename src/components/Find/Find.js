@@ -15,20 +15,14 @@ const degreesURL = new URL("degrees", BASE_URL);
 
 export default function Find() {
   const [degrees, setDegrees] = useState([]);
-  const [categories, setCategories] = useState([]); //eslint-disable-line no-unused-vars 
 
   const [examOptions, setExamOptions] = useState({
     degreeId: "",
-    categoryId: "",
-    instructorId: "",
-    courseId: "",
-    name: "",
   });
 
   useIntialDegreeOptions(
     examOptions,
     setDegrees,
-    setCategories,
     setExamOptions
   );
 
