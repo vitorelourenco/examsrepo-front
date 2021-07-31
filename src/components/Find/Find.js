@@ -15,8 +15,7 @@ const degreesURL = new URL("degrees", BASE_URL);
 
 export default function Find() {
   const [degrees, setDegrees] = useState([]);
-  const [categories, setCategories] = useState([]);
-  console.log(categories);
+  const [categories, setCategories] = useState([]); //eslint-disable-line no-unused-vars 
 
   const [examOptions, setExamOptions] = useState({
     degreeId: "",
@@ -34,7 +33,6 @@ export default function Find() {
   );
 
   const { findBy } = useParams();
-  console.log(examOptions.degreeId);
   return (
     <Wrapper>
       <Spacer>
